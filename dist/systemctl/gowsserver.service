@@ -1,0 +1,10 @@
+[Unit]
+Description=Go Websocket Server
+
+[Service]
+Type=simple
+ExecStart=/home/me/Documents/app/go/go-ws-server/app
+WorkingDirectory=/home/me/Documents/app/go/go-ws-server
+
+[Install]
+WantedBy=multi-user.target
