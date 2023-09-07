@@ -14,9 +14,22 @@ func main() {
 		log.Fatal(errLoadEnv)
 	}
 
-	fmt.Println("init development")
+	fmt.Println("Runnig Migration...")
 	err := models.DbConnect()
 	if err != nil {
 		fmt.Println(err)
+	}
+
+	errMigrate := models.DB.AutoMigrate(&models.Users{})
+	if errMigrate != nil {
+		fmt.Println(errMigrate.Error())
+	}
+	errMigrate = models.DB.AutoMigrate(&models.Webhooks{})
+	if errMigrate != nil {
+		fmt.Println(errMigrate.Error())
+	}
+	errMigrate = models.DB.AutoMigrate(&models.User_historys{})
+	if errMigrate != nil {
+		fmt.Println(errMigrate.Error())
 	}
 }

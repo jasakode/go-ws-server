@@ -5,6 +5,7 @@ import (
 	"go-ws-server/src/config"
 	_ "go-ws-server/src/docs"
 	"go-ws-server/src/middleware"
+	"go-ws-server/src/models"
 	"go-ws-server/src/modules"
 	"log"
 
@@ -15,13 +16,17 @@ import (
 )
 
 func main() {
-	gin.SetMode(gin.ReleaseMode)
-	r := gin.Default()
-	r.Use(middleware.CorsMiddleware())
-
 	errLoadEnv := config.LoadConfig()
 	if errLoadEnv != nil {
 		log.Fatal(errLoadEnv)
+	}
+
+	gin.SetMode(gin.ReleaseMode)
+	r := gin.Default()
+	r.Use(middleware.CorsMiddleware())
+	errDb := models.DbConnect()
+	if errDb != nil {
+		log.Fatal(errDb.Error())
 	}
 
 	apiV1 := r.Group(config.Config.API_VERSION)

@@ -13,6 +13,15 @@ type ConfigOptions struct {
 	PORT                string
 	API_VERSION         string
 	EXPIRED_CONNECTIONS uint
+	WORKING_DIR         string
+
+	DATABASE_HOST     string
+	DATABASE_USER     string
+	DATABASE_PORT     string
+	DATABASE_PASSWORD string
+	DATABASE_DB_NAME  string
+	DATABASE_SSL_MODE string
+	DATABASE_TIMEZONE string
 }
 
 var Config ConfigOptions = ConfigOptions{}
