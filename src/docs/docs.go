@@ -6,6 +6,7 @@ import (
 	"bytes"
 	"encoding/json"
 	"fmt"
+	"go-ws-server/src/config"
 	"io"
 	"os"
 	"strings"
@@ -32,9 +33,7 @@ type swaggerInfo struct {
 // SwaggerInfo holds exported Swagger Info so clients can modify it
 var SwaggerInfo = swaggerInfo{
 	Version:     "2.0",
-	Host:        "localhost:8080",
-	BasePath:    "/",
-	Schemes:     []string{"http"},
+	Host:        config.Config.SERVER + config.Config.PORT + "/",
 	Title:       "Gin Swagger Example API",
 	Description: "This is a sample server server.",
 }

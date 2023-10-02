@@ -2,7 +2,6 @@ package config
 
 import (
 	"os"
-	"strings"
 
 	"github.com/joho/godotenv"
 )
@@ -33,28 +32,11 @@ func LoadConfig() error {
 	}
 
 	Config.ENV = os.Getenv("GO_ENV")
-
-	if strings.ToLower(Config.ENV) == "development" {
-		conf, errLoadConf := LoadEnvConfig(Config.ENV)
-		if errLoadConf != nil {
-			return errLoadConf
-		}
-		Config = conf
+	conf, errLoadConf := LoadEnvConfig()
+	if errLoadConf != nil {
+		return errLoadConf
 	}
-	if strings.ToLower(Config.ENV) == "staging" {
-		conf, errLoadConf := LoadEnvConfig(Config.ENV)
-		if errLoadConf != nil {
-			return errLoadConf
-		}
-		Config = conf
-	}
-	if strings.ToLower(Config.ENV) == "production" {
-		conf, errLoadConf := LoadEnvConfig(Config.ENV)
-		if errLoadConf != nil {
-			return errLoadConf
-		}
-		Config = conf
-	}
+	Config = conf
 
 	return nil
 }

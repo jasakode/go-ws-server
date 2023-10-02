@@ -8,4 +8,7 @@ import (
 
 func Routers(r *gin.RouterGroup) {
 	r.GET("/get_user", userscontrollers.GetUsers)
+	r.POST("/add_user", userscontrollers.CreateUser)
+	r.PATCH("/update_user", userscontrollers.UpdateUser)
+	r.DELETE("/delete_user", userscontrollers.DeleteUser)
 }

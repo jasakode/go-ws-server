@@ -35,7 +35,7 @@ func main() {
 	// ...
 
 	// DOCS
-	url := ginSwagger.URL("http://localhost:8080/api/v1/docs/doc.json")
+	url := ginSwagger.URL(config.Config.SERVER + config.Config.PORT + "/api/v1/docs/doc.json")
 	apiV1.GET("/docs/*any", ginSwagger.WrapHandler(swaggerFiles.Handler, url))
 	// red := color.New(color.FgRed)
 	green := color.New(color.FgGreen)

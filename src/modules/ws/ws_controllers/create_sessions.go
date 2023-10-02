@@ -70,24 +70,4 @@ func HandleWebSocket(w http.ResponseWriter, r *http.Request, user interface{}) {
 		Socket:         conn,
 	})
 
-	// for {
-	// 	_, p, err := conn.ReadMessage()
-	// 	if err != nil {
-	// 		log.Println(err)
-	// 		delete(Connections, conn)
-	// 		return
-	// 	}
-	// 	var rxmsg RXMessage
-	// 	errd := json.Unmarshal(p, &rxmsg)
-	// 	if errd != nil {
-	// 		fmt.Println(errd.Error())
-	// 	}
-
-	// 	// VALIDASI TOKEN TERHUBUNG DENGAN USER YANG ADA DI DB ATAU TIDAK -- todo
-	// 	Sessions = append(Sessions, WSSessions{
-	// 		Authorization: "",
-	// 		Socket:        conn,
-	// 		ConnectinIn:   uint(time.Now().Unix()),
-	// 	})
-	// }
 }

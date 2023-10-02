@@ -28,6 +28,14 @@
         "description": "WS Sockets Endpoints"
       },
       {
+        "name": "Authorization",
+        "description": "Authorization Endpoints"
+      },
+      {
+        "name": "Users",
+        "description": "Users Endpoints"
+      },
+      {
         "name": "Webhook",
         "description": ""
       },
@@ -45,7 +53,7 @@
       }
     ],
     "paths": {
-      "/ws/{token}": {
+      "/ws/client/{token}": {
         "get": {
           "tags": [
             "WS Sockets"
@@ -101,8 +109,15 @@
           ]
         }
       },
-      "/webhook/{marketplace}": {
-        "post": {
+      "/ws/server/{token_token}": {
+        "get": {
+          "tags": [
+            "WS Sockets"
+          ]
+        }
+      },
+      "/webhook/get_webhook": {
+        "get": {
             "tags": [
               "Webhook"
             ],
@@ -152,7 +167,62 @@
             ]
         }
       },
-      "/action/get_connection_count": {
+      "/webhook/add_webhook": {
+        "post": {
+          "tags": ["Webhook"]
+        }
+      },
+      "/webhook/update_webhook": {
+        "patch": {
+          "tags": ["Webhook"]
+        }
+      },
+      "/webhook/delete_webhook": {
+        "delete": {
+          "tags": ["Webhook"]
+        }
+      },
+      "/webhook/{webhook_id}/*any": {
+        "post": {
+          "tags": ["Webhook"]
+        }
+      },
+      "/api/v1/auth": {
+        "post": {
+          "tags": ["Authorization"]
+        }
+      },
+      "/api/v1/auth/login": {
+        "patch": {
+          "tags": ["Authorization"]
+        }
+      },
+      "/api/v1/auth/logout": {
+        "patch": {
+          "tags": ["Authorization"]
+        }
+      },
+      "/api/v1/user/get_user": {
+        "get": {
+          "tags": ["Users"]
+        }
+      },
+      "/api/v1/user/add_user": {
+        "post": {
+          "tags": ["Users"]
+        }
+      },
+      "/api/v1/user/update_user": {
+        "patch": {
+          "tags": ["Users"]
+        }
+      },
+      "/api/v1/user/delete_user": {
+        "delete": {
+          "tags": ["Users"]
+        }
+      },
+      "/action/get_action": {
         "get": {
           "tags": [
             "Actions"
@@ -213,7 +283,7 @@
           ]
         }
       },
-      "/action/blast_actions": {
+      "/action/add_action": {
         "post": {
             "tags": [
               "Actions"
@@ -262,49 +332,22 @@
                 ]
               }
             ]
-          },
-          "delete": {
-            "tags": [
-              "Actions"
-            ],
-            "summary": "Deletes a pet",
-            "description": "delete a pet",
-            "operationId": "deletePet",
-            "parameters": [
-              {
-                "name": "api_key",
-                "in": "header",
-                "description": "",
-                "required": false,
-                "schema": {
-                  "type": "string"
-                }
-              },
-              {
-                "name": "petId",
-                "in": "path",
-                "description": "Pet id to delete",
-                "required": true,
-                "schema": {
-                  "type": "integer",
-                  "format": "int64"
-                }
-              }
-            ],
-            "responses": {
-              "400": {
-                "description": "Invalid pet value"
-              }
-            },
-            "security": [
-              {
-                "petstore_auth": [
-                  "write:pets",
-                  "read:pets"
-                ]
-              }
-            ]
           }
+      },
+      "/action/update_action": {
+        "patch": {
+          "tags": ["Actions"]
+        }
+      },
+      "/action/delete_action": {
+        "delete": {
+          "tags": ["Actions"]
+        }
+      },
+      "/action/execute_action": {
+        "post": {
+          "tags": ["Actions"]
+        }
       },
       "/server/info": {
         "get": {
@@ -365,6 +408,11 @@
                 ]
               }
             ]
+        }
+      },
+      "/server/connection_count": {
+        "get": {
+          "tags": ["Server"]
         }
       }
     },
@@ -525,4 +573,4 @@
         }
       }
     }
-  }
+}
