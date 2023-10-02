@@ -1,7 +1,7 @@
 {
     "openapi": "3.0.3",
     "info": {
-      "title": "Omnichannel Web Socket Documentation",
+      "title": "Jasakode Web Socket Documentation",
       "description": "Docs",
       "termsOfService": "http://swagger.io/terms/",
       "contact": {
@@ -29,7 +29,7 @@
       },
       {
         "name": "Authorization",
-        "description": "Authorization Endpoints"
+        "description": "Authorization Endpoints Untuk Admin"
       },
       {
         "name": "Users",
