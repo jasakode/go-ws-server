@@ -9,6 +9,8 @@ import (
 	"go-ws-server/src/modules"
 	"log"
 
+	urlnet "net/url"
+
 	"github.com/fatih/color"
 	"github.com/gin-gonic/gin"
 	swaggerFiles "github.com/swaggo/files"
@@ -35,13 +37,24 @@ func main() {
 	// ...
 
 	// DOCS
-	url := ginSwagger.URL(config.Config.SERVER + config.Config.PORT + "/api/v1/docs/doc.json")
+	var host string
+	host = config.Config.SERVER + "/api/v1/docs/doc.json"
+	u, err := urlnet.Parse(config.Config.SERVER)
+	if err != nil {
+		log.Fatal(err.Error())
+	}
+	if u.Host == "127.0.0.1" || u.Host == "localhost" {
+		host = config.Config.SERVER + config.Config.PORT + "/api/v1/docs/doc.json"
+	}
+
+	url := ginSwagger.URL(host + "/api/v1/docs/doc.json")
+
 	apiV1.GET("/docs/*any", ginSwagger.WrapHandler(swaggerFiles.Handler, url))
 	// red := color.New(color.FgRed)
 	green := color.New(color.FgGreen)
 	blue := color.New(color.FgBlue)
 	runningText := fmt.Sprintf("%v Server Running Successfully...", green.Sprintf("[+]"))
-	doctText := fmt.Sprintf("%v See Docs %v", green.Sprintf("[+]"), blue.Sprintf("%v%v%v/docs/index.html", config.Config.SERVER, config.Config.PORT, config.Config.API_VERSION))
+	doctText := fmt.Sprintf("%v See Docs %v", green.Sprintf("[+]"), blue.Sprintf("%v%v/docs/index.html", host, config.Config.API_VERSION))
 	fmt.Println(runningText)
 	fmt.Println(doctText)
 	fmt.Println(fmt.Sprintf("%v %v%v", green.Sprintf("[+]"), config.Config.SERVER, config.Config.API_VERSION))
